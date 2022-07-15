@@ -15,4 +15,15 @@ class CategoryController extends Controller
             $categories
         ], 200);
     }
+
+    public function add(Request $request)
+    {
+        $category = new Category;
+        $category->category_name = $request->category_name;
+        $category->user_id = $request->user_id; 
+        $category->save();
+        return response()->json([
+            $category
+        ], 200);
+    }
 }

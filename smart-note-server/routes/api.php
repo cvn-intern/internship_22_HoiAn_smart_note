@@ -25,3 +25,4 @@ Route::get('/test', [TestAPIController::class, 'test']);
 
 // Category
 Route::get('/categories', [CategoryController::class, 'read']);
+Route::post('/categories', [CategoryController::class, 'add']);

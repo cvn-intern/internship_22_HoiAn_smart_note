@@ -44,6 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function labels()
+    {
+        return $this->hasMany(Label::class, 'user_id', 'id');
+    }
     /**
      * Relationship between a user and notes
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -25,14 +25,14 @@ use App\Http\Controllers\LabelController;
 Route::controller(LabelController::class)->prefix('labels')->group(function () {
     // READ
     // Read all labels from specific user
-    Route::get('/{user_id}', 'readLabelsFromUser');
+    Route::get('/{user_id}', 'readUserRelatedLabels');
     // Read all labels
     Route::get('/', 'readAllLabels');
     //---------------------------------------------------------------------------------------------------------------------
 
     // CREATE
     // Add new label
-    Route::post('/', 'addNewLabel');
+    Route::post('/', 'createLabel');
     //---------------------------------------------------------------------------------------------------------------------
 
     // UPDATE

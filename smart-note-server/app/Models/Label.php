@@ -11,10 +11,6 @@ class Label extends Model
 
     protected $fillable = [
         'label_name',
+        'user_id'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }

@@ -62,6 +62,11 @@ class NoteController extends Controller
             }
             
             $category = Auth::user()->categories()->where('id', $categoryId)->first();
+            if(!isSet($category)) {
+                return response()->json([
+                    'message' => 'Category not found',
+                ], 200);
+            }
             $notes = $category->notes()->get();
             
             return response()->json([

@@ -2,8 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestAPIController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LabelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +19,6 @@ use App\Http\Controllers\CategoryController;
 //     return $request->user();
 // });
 
-// Test routes
-Route::get('/test', [TestAPIController::class, 'test']);
-
-// Category
-Route::get('/categories', [CategoryController::class, 'read']);
+// Label
+Route::get('/labels', [LabelController::class, 'read']);
+Route::post('/labels', [LabelController::class, 'add']);

@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabelController;
 
+use App\Http\Controllers\TestAPIController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +43,13 @@ Route::controller(LabelController::class)->prefix('labels')->group(function () {
 
     // DELETE
     //---------------------------------------------------------------------------------------------------------------------
+});
+// Category
+Route::get('/categories', [CategoryController::class, 'read']);
+
+// Note routes
+Route::controller(NoteController::class)->prefix('notes')->group(function() {
+    Route::get('/', 'read');
+    Route::get('/users/{userId}', 'getUserRelatedNotes');
+    Route::get('/category/{categoryId}/user', 'getCategoryRelatedNotes');
 });

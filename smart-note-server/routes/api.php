@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LabelController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,24 @@ use App\Http\Controllers\LabelController;
 //     return $request->user();
 // });
 
-// Label
-Route::get('/labels', [LabelController::class, 'read']);
-Route::post('/labels', [LabelController::class, 'add']);
+
+// Group label api
+Route::controller(LabelController::class)->prefix('labels')->group(function () {
+    // READ
+    // Read all labels from specific user
+    Route::get('/{user_id}', 'readLabelsFromUser');
+    // Read all labels
+    Route::get('/', 'readAllLabels');
+    //---------------------------------------------------------------------------------------------------------------------
+
+    // CREATE
+    // Add new label
+    Route::post('/', 'addNewLabel');
+    //---------------------------------------------------------------------------------------------------------------------
+
+    // UPDATE
+    //---------------------------------------------------------------------------------------------------------------------
+
+    // DELETE
+    //---------------------------------------------------------------------------------------------------------------------
+});

@@ -18,18 +18,15 @@ class NoteFactory extends Factory
      */
     public function definition()
     { 
-        // Get random user_id 
-        $userId = User::all('id')->shuffle()->first();
-        // Get random category_id from the random user
-        $categoryId = Category::all(['id', 'user_id'])->where('user_id', '=', intval($userId->id))->shuffle()->first();
+        $category = Category::all()->shuffle()->first();
 
         return [
             'note_title' => fake()->city(),
             'note_content' => fake()->realText(),
-            'is_deleted' => 0,
             'attachment' => fake()->imageUrl(360, 360, 'animals', true, 'dogs', true),
-            'user_id' => $userId->id,
-            'category_id' => isset($categoryId->id) ?  $categoryId->id : 1,
+            'user_id' => $category->user_id,
+            'is_deleted' => 0,
+            'category_id' => $category->id,
         ];
     }
 }

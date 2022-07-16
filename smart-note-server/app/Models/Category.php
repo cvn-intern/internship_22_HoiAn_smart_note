@@ -22,12 +22,14 @@ class Category extends Model
 
     // 
     protected $hidden = [
+        
     ];
 
-    /**
-     * Relationship between a category and notes
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function notes()
     {
         return $this->hasMany(Note::class, 'category_id', 'id');

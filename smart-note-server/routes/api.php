@@ -24,28 +24,34 @@ use App\Http\Controllers\NoteController;
 // });
 
 
-// Group label api
+// Group categories routes
+Route::controller(CategoryController::class)->prefix('categories')->group(function () {
+    // READ
+    Route::get('/{user_id}', [CategoryController::class, 'readUserRelatedCategories']);
+    Route::get('/', [CategoryController::class, 'readAllCategories']);
+
+    // CREATE
+    Route::post('/', [CategoryController::class, 'createCategory']);
+
+    // UPDATE
+
+    // DELETE
+
+});
+// Group labels api
 Route::controller(LabelController::class)->prefix('labels')->group(function () {
     // READ
-    // Read all labels from specific user
     Route::get('/{user_id}', 'readUserRelatedLabels');
-    // Read all labels
     Route::get('/', 'readAllLabels');
-    //---------------------------------------------------------------------------------------------------------------------
 
     // CREATE
     // Add new label
     Route::post('/', 'createLabel');
-    //---------------------------------------------------------------------------------------------------------------------
 
     // UPDATE
-    //---------------------------------------------------------------------------------------------------------------------
 
     // DELETE
-    //---------------------------------------------------------------------------------------------------------------------
 });
-// Category
-Route::get('/categories', [CategoryController::class, 'read']);
 
 // Note routes
 Route::controller(NoteController::class)->prefix('notes')->group(function() {

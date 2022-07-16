@@ -24,7 +24,7 @@ class CreateNoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'note_title' => 'required|string|min:1|max:50',
+            'note_title' => ['required', 'string', 'regex:/^[a-zA-Z0-9 _-]{1,50}$/'],
             'note_content' => 'required|string',
         ];
     }

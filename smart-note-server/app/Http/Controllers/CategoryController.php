@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Note;
 use App\Util\StringValidation;
+use Exception;
 
 class CategoryController extends Controller
 {

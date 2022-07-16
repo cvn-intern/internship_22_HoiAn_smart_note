@@ -12,9 +12,9 @@ class LabelController extends Controller
     {
         try {
             $labels = Label::all();
-            return response()->json([
+            return response()->json(
                 $labels
-            ], 200);
+            , 200);
         }
         catch (Exception $exception) {
             return response()->json([
@@ -27,9 +27,9 @@ class LabelController extends Controller
     {
         try {
             $labels = Label::where('user_id', $user_id)->get();
-            return response()->json([
+            return response()->json(
                 $labels
-            ], 200);
+            , 200);
         }
         catch (Exception $exception) {
             return response()->json([
@@ -60,9 +60,9 @@ class LabelController extends Controller
             $label->label_name = $label_name;
             $label->user_id = $user_id;
             $label->save();
-            return response()->json([
+            return response()->json(
                 $label
-            ], 201);
+            , 201);
         }
         catch (Exception $exception) {
             return response()->json([

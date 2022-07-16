@@ -13,9 +13,9 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::all();
-            return response()->json([
+            return response()->json(
                 $categories
-            ], 200);
+            , 200);
         }
         catch (Exception $exception) {
             return response()->json([
@@ -28,9 +28,9 @@ class CategoryController extends Controller
     {
         try {
             $categories = Category::where('user_id', $user_id)->get();
-            return response()->json([
+            return response()->json(
                 $categories
-            ], 200);
+            , 200);
         }
         catch (Exception $exception) {
             return response()->json([
@@ -61,9 +61,9 @@ class CategoryController extends Controller
             $category->category_name = $category_name;
             $category->user_id = $user_id;
             $category->save();
-            return response()->json([
+            return response()->json(
                 $category
-            ], 201);
+            , 201);
         }
         catch (Exception $exception) {
             return response()->json([

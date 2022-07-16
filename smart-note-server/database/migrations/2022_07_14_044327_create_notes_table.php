@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -18,9 +19,9 @@ return new class extends Migration
             Schema::create('notes', function (Blueprint $table) {
                 $table->id('id');
                 $table->string('note_title');
-                $table->longText('note_content');
-                $table->boolean('is_deleted');
-                $table->string('attachment');
+                $table->longText('note_content')->nullable();
+                $table->boolean('is_deleted')->default(false);
+                $table->string('attachment')->nullable();
                 $table->timestamps();
                 // Add deleted_at column timestamps
                 $table->softDeletes();

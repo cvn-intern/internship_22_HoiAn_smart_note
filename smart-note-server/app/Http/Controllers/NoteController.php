@@ -2,81 +2,112 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Note;
 use App\Models\User;
 use Exception;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateNoteRequest;
+use App\Models\Category;
+use App\Util\StringValidation;
 
 class NoteController extends Controller
 {
-    public function read()
+    public function readAllNotes()
     {
         try {
             $notes = Note::all();
             
-            return response()->json([
-                $notes
-            ], 200);
+            return response()->json($notes, 200);
         }
         catch (Exception $exception) {
             return response()->json([
-                'message' => $exception->getMessage(),
-            ], 400);
+                'error' => $exception->getMessage(),
+            ], 500);
         }
     }
 
-    public function getUserRelatedNotes(Request $request, string $userId)
+    public function readNote($note_id)
     {
         try {
-            $user = User::all()->where('id', $userId)->first();
-            $notes = $user->notes()->get();
+            $note_id = htmlentities($note_id);
+            $note = Note::findOrFail($note_id);
+            return response()->json($note, 200);
+        }
+        catch (Exception $exception) {
             return response()->json([
-                'notes' => $notes,
-            ], 200);
+                'error' => $exception->getMessage(),
+            ], 500);
+        }
+
+    }
+
+    public function readUserRelatedNotes(string $user_id)
+    {
+        try {
+            $user = User::findOrFail($user_id);
+            $notes = $user->notes()->get();
+            return response()->json($notes, 200);
         }
         catch(Exception $exception) {
             return response()->json([
-                'message' => $exception->getMessage(),
-            ], 400);
+                'error' => $exception->getMessage(),
+            ], 500);
         }
     }
 
-    public function getCategoryRelatedNotes(Request $request, $categoryId)
+    public function readCategoryRelatedNotes(string $category_id)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-
         try {
-            $isExisted = Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password,
-            ]);
-
-            if (!$isExisted) {
-                return response()->json([
-                    'message' => 'Not valid email or password',
-                ], 400);
-            }
-            
-            $category = Auth::user()->categories()->where('id', $categoryId)->first();
-            if(!isSet($category)) {
+            $category_id = htmlentities($category_id);
+            $validCategory = Category::findOrFail($category_id);
+            if(!isSet($validCategory)) {
                 return response()->json([
                     'message' => 'Category not found',
                 ], 200);
             }
-            $notes = $category->notes()->get();
+            $notes = $validCategory->notes()->get();
             
-            return response()->json([
-                'notes' => $notes,
-            ], 200);
+            return response()->json($notes, 200);
         } 
-            catch(Exception $exception) {
+        catch(Exception $exception) {
             return response()->json([
-                'message' => $exception->getMessage(),
-            ], 400);
+                'error' => $exception->getMessage(),
+            ], 500);
         }
+    }
+
+    public function createNote(CreateNoteRequest $request, string $category_id)
+    {
+        try {
+            $validCategory = Category::findOrFail($category_id);
+
+            $note_title = StringValidation::deleteSpace($request->note_title);
+            $note_content = StringValidation::deleteSpace($request->note_content);
+            $category_id = htmlentities($category_id);
+            $globalFilePath = asset('storage');
+            
+            $note = new Note();
+            $note->note_title = $note_title;
+            $note->note_content = $note_content;
+            $note->category_id = $category_id;
+            $note->user_id = $validCategory->user_id;
+
+            if ($request->hasFile('attachment')) {
+                $attachmentPath = $request->attachment->store('public');
+                $note->attachment = $globalFilePath . '/' . $attachmentPath;
+            }
+
+            $note->save();
+
+            return response()->json([
+                'note' => $note,
+                'message' => 'Created new note successfully',
+            ], 201);
+        }
+        catch (Exception $exception) {
+            return response()->json([
+                'error' => $exception->getMessage(),
+            ], 500);
+        }
+
     }
 }

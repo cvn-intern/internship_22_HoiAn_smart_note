@@ -49,7 +49,11 @@ Route::get('/categories', [CategoryController::class, 'read']);
 
 // Note routes
 Route::controller(NoteController::class)->prefix('notes')->group(function() {
-    Route::get('/', 'read');
-    Route::get('/users/{userId}', 'getUserRelatedNotes');
-    Route::get('/category/{categoryId}/user', 'getCategoryRelatedNotes');
+    // Read notes
+    Route::get('/', 'readAllNotes');
+    Route::get('/{note_id}', 'readNote');
+    Route::get('/users/{user_id}', 'readUserRelatedNotes');
+    Route::get('/category/{category_id}', 'readCategoryRelatedNotes');
+    // Create notes
+    Route::post('/category/{category_id}', 'createNote');
 });

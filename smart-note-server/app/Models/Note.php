@@ -17,7 +17,7 @@ class Note extends Model
     protected $fillable = [
         'note_title',
         'note_content',
-        'attachement',
+        'attachment',
         'user_id',
         'category_id',
     ];

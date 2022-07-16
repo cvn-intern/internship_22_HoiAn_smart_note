@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Label;
 use App\Util\StringValidation;
+use Exception;
 
 class LabelController extends Controller
 {
@@ -33,7 +34,7 @@ class LabelController extends Controller
         }
         catch (Exception $exception) {
             return response()->json([
-                'error' => $exceptione->getMessage()
+                'error' => $exception->getMessage()
             ], 500);
         }
     }

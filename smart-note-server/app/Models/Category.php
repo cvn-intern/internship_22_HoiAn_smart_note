@@ -21,6 +21,16 @@ class Category extends Model
 
     // 
     protected $hidden = [
-        'id'
+        
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'category_id', 'id');
+    }
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './index.module.scss';
 import SideBar from './Sidebar';
-import Note from './pages/Note';
+import Note from './pages/Note/index';
 import axios from 'axios';
 import process from 'process';
 
@@ -30,9 +30,7 @@ function App() {
     return (
         <div className={cx('wrapper-content')}>
             <SideBar />
-            <div className={cx('container')}>
-                <Note />
-            </div>
+            <Note/>
         </div>
     );
 }

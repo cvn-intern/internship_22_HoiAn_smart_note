@@ -1,5 +1,5 @@
 .wrapper {
-    width: 350px;
+    width: var(--col-2);
     height: 100vh;
-    background-color: #ddd;
+    display: none;
 }

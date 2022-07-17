@@ -1,40 +1,24 @@
-.add-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 20px;
-    height: 45px;
+.wrapper {
     margin: 20px 25px 0 25px;
-    background-color: #0076ff;
     color: white;
-    transition: border-color 0.2s ease-in-out;
-    padding: 0 5px;
     width: auto;
-    cursor: pointer;
-}
 
-.add-wrapper:hover {
-    opacity: 0.7;
-}
+    .icon {
+        font-size: 18px;
+        &-small {
+            font-size: 14px;
+        }
+    }
+    .popup {
+        margin-top: 4px;
+        background-color: #559ef1;
+    }
 
-.add-left {
-    display: flex;
-    align-items: center;
-}
+    .btn-add {
+        justify-content: flex-start;
 
-.add-right {
-    margin-right: 8px;
-}
-
-.add-icon {
-    font-size: 20px;
-    width: 30px;
-}
-
-.add-right .add-icon {
-    font-size: 14px;
-}
-
-.add-title {
-    margin-left: 4px;
+        & + .btn-add {
+            margin-top: 10px;
+        }
+    }
 }

@@ -5,6 +5,7 @@ import SideBar from './Sidebar';
 import Note from './pages/Note';
 import axios from 'axios';
 import process from 'process';
+import './App.css';
 
 const cx = classNames.bind(styles);
 

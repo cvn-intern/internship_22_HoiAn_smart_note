@@ -13,6 +13,8 @@ interface PopupConfirmProps extends PopupProps {
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onClose?: () => void;
     onConfirm?: () => void;
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    submitted?: boolean;
 }
 
 function PopupConfirm(props: PopupConfirmProps) {
@@ -26,6 +28,7 @@ function PopupConfirm(props: PopupConfirmProps) {
                     placeholder={props.placeholder}
                     value={props.inputValue}
                     onChange={props.onChange}
+                    onKeyDown={props.onKeyDown}
                 />
             )}
             <div className={cx('buttons')}>

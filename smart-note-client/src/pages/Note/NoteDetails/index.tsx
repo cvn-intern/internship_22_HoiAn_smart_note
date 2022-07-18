@@ -4,7 +4,7 @@ import { CaretDownOutlined } from '@ant-design/icons';
 
 const cx = classNames.bind(styles);
 
-const NoteDetails = ({ activeNote, onUpdateNote }: any) => {
+const NoteDetails = ({ activeNote, onUpdateNote, inputRef }: any) => {
     const onEditField: any = (key: number, value: any) => {
         onUpdateNote({
             ...activeNote,
@@ -30,6 +30,7 @@ const NoteDetails = ({ activeNote, onUpdateNote }: any) => {
             </div>
             <div className={cx('content')}>
                 <input
+                    ref={inputRef}
                     type="text"
                     id="title"
                     value={activeNote.title}
@@ -44,9 +45,7 @@ const NoteDetails = ({ activeNote, onUpdateNote }: any) => {
                     onChange={(e) => onEditField('body', e.target.value)}
                 ></textarea>
             </div>
-            <div className={cx('button-save')}>
-                <button>Save</button>
-            </div>
+            <div className={cx('button-save')}>{/* <button>Save</button> */}</div>
         </div>
     );
 };

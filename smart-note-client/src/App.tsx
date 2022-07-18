@@ -30,7 +30,7 @@ function App() {
     return (
         <div className={cx('wrapper-content')}>
             <SideBar />
-            <Note/>
+            <Note />
         </div>
     );
 }

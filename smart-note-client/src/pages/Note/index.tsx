@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames/bind';
 import styles from './Note.module.scss';
@@ -9,8 +9,11 @@ const cx = classNames.bind(styles);
 
 const Note = () => {
     const [notes, setNotes] = useState(localStorage.notes ? JSON.parse(localStorage.notes) : []);
-
     const [activeNote, setActiveNote] = useState(false);
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    console.log(inputRef);
 
     useEffect(() => {
         localStorage.setItem('notes', JSON.stringify(notes));
@@ -27,7 +30,7 @@ const Note = () => {
         setNotes([newNote, ...notes]);
     };
 
-    const onUpdateNote = (updatedNote: any) => {
+    const onUpdateNote = (updatedNote: string) => {
         const updatedNotesArray = notes.map((note: any) => {
             if (note.id === activeNote) {
                 return updatedNote;
@@ -44,6 +47,7 @@ const Note = () => {
     };
 
     const getActiveNote = () => {
+        inputRef.current! && inputRef.current!.focus();
         return notes.find((note: any) => note.id === activeNote);
     };
 
@@ -56,7 +60,7 @@ const Note = () => {
                 activeNote={activeNote}
                 setActiveNote={setActiveNote}
             />
-            <NoteDetails activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+            <NoteDetails activeNote={getActiveNote()} onUpdateNote={onUpdateNote} inputRef={inputRef} />
         </div>
     );
 };

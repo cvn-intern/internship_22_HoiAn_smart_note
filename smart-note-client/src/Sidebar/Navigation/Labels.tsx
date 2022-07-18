@@ -10,7 +10,7 @@ import labelApi from '../../services/labelApi';
 
 const cx = classNames.bind(styles);
 
-const Categories = () => {
+const Labels = () => {
     const [category, setCategory] = useState<Label[]>([]);
     useEffect(() => {
         // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
@@ -40,5 +40,5 @@ const Categories = () => {
     );
 };
 
-export default Categories;
+export default Labels;
 

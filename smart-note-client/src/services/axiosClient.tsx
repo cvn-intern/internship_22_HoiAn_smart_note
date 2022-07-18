@@ -1,10 +1,10 @@
 import axios from 'axios';
-import process from 'process';
+// import process from 'process';
 
-const API_BASE_URL=process.env.REACT_APP_API_BASE_URL;
+// const API_BASE_URL=process.env.REACT_APP_API_BASE_URL;
 
 const axiosClient = axios.create({
-    baseURL: API_BASE_URL,
+    baseURL: 'http://127.0.0.1:8000/api/',
     headers: {
         'Content-Type': 'application/json',
     },

@@ -11,15 +11,13 @@ const cx = classNames.bind(styles);
 
 const Note = () => {
 
-    const params = useParams();
+    const params= useParams();
 
     const [notes, setNotes] = useState(localStorage.notes ? JSON.parse(localStorage.notes) : []);
 
     const [activeNote, setActiveNote] = useState(false);
 
     const inputRef = useRef<HTMLInputElement>(null);
-
-    console.log(inputRef);
 
     // useEffect(() => {
     //     localStorage.setItem('notes', JSON.stringify(notes));
@@ -29,13 +27,13 @@ const Note = () => {
         // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
         (async () => {
             try {
-                const data = await noteApi.getById(params.category_id);
+                const data = await noteApi.getById((params.category_id));
                 setNotes(data);
             } catch (error) {
                 console.log(error);
             }
         })();
-    }, [notes]);
+    }, []);
 
 
     const onAddNote = () => {

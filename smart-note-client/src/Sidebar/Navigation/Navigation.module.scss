@@ -1,9 +1,21 @@
 .menu {
     background: #0076ff;
     color: white;
-    border-radius: '20px';
+    border-radius: 20px 20px 0 0 ;
 }
 
 .menu:active {
+    opacity: 1;
     color: white;
+}
+
+.menu:hover {
+    opacity: 1;
+    color: white;
+}
+
+.menu-item {
+    color: white;
+    background: #0076ff;
+    border-radius: 20px;
 }

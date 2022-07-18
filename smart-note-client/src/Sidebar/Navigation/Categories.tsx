@@ -15,7 +15,6 @@ const cx = classNames.bind(styles);
 const Categories = () => {
     const [category, setCategory] = useState<Category[]>([]);
     const navigate = useNavigate();
-    const [idCategory, setIdCategory] = useState<Number>();
 
     const handleClick = (id: Number) => {
         navigate(`/categories/note/${id}`)
@@ -34,11 +33,11 @@ const Categories = () => {
     }, []);
 
     return (
-        <Menu mode="inline" style={{margin: '0 25px 0 25px', width: 'auto', background: '#328cff', borderRadius: '20px'}}>
+        <Menu mode="inline" style={{margin: '0 25px 0 25px', width: 'auto', background: '#328cff', border: 'black'}}>
             <Menu.SubMenu title={<span>Category</span>} className={cx('menu')}>
                 {category.map((cate, index: number) => {
                     return (
-                        <Menu.Item key={index} onClick={() => {handleClick(cate.id)}}>
+                        <Menu.Item key={index} onClick={() => {handleClick(cate.id)}} className={cx('menu-item')}>
                             <FolderOpenOutlined />
                             <span>{cate.category_name}</span>
                         </Menu.Item>

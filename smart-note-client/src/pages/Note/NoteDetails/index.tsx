@@ -32,7 +32,7 @@ const NoteDetails = ({ activeNote, onUpdateNote }: any) => {
                 <input
                     type="text"
                     id="title"
-                    value={activeNote.title}
+                    value={activeNote.note_title}
                     placeholder="Title"
                     autoFocus
                     onChange={(e) => onEditField('title', e.target.value)}
@@ -40,7 +40,7 @@ const NoteDetails = ({ activeNote, onUpdateNote }: any) => {
                 <textarea
                     id="body"
                     placeholder="Write your note here..."
-                    value={activeNote.body}
+                    value={activeNote.note_content}
                     onChange={(e) => onEditField('body', e.target.value)}
                 ></textarea>
             </div>

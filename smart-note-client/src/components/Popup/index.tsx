@@ -3,7 +3,7 @@ import styles from './Popup.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface PopupProps {
+export interface PopupProps {
     show?: boolean;
     children: React.ReactNode;
     className?: string;

@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
@@ -48,7 +48,7 @@ const Button = ({
 
     if (to) {
         props.to = to;
-        Comp = Link;
+        // Comp = Link;
     } else if (href) {
         props.href = href;
         Comp = 'a';

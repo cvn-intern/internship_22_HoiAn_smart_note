@@ -6,17 +6,26 @@ import { Category } from '../../models/category';
 import styles from './Navigation.module.scss';
 import classNames from 'classnames/bind';
 
+import { useNavigate } from "react-router-dom";
+
 import { FolderOpenOutlined } from '@ant-design/icons';
 
 const cx = classNames.bind(styles);
 
 const Categories = () => {
     const [category, setCategory] = useState<Category[]>([]);
+    const navigate = useNavigate();
+    const [idCategory, setIdCategory] = useState<Number>();
+
+    const handleClick = (id: Number) => {
+        navigate(`/categories/note/${id}`)
+    }
+    
     useEffect(() => {
         // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
         (async () => {
             try {
-                const data = await categoryApi.getById(6);
+                const data = await categoryApi.getById(4);
                 setCategory(data);
             } catch (error) {
                 console.log(error);
@@ -29,7 +38,7 @@ const Categories = () => {
             <Menu.SubMenu title={<span>Category</span>} className={cx('menu')}>
                 {category.map((cate, index: number) => {
                     return (
-                        <Menu.Item key={index}>
+                        <Menu.Item key={index} onClick={() => {handleClick(cate.id)}}>
                             <FolderOpenOutlined />
                             <span>{cate.category_name}</span>
                         </Menu.Item>

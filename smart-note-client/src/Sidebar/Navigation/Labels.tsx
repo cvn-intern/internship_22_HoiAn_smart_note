@@ -16,7 +16,7 @@ const Categories = () => {
         // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
         (async () => {
             try {
-                const data = await labelApi.getById(6);
+                const data = await labelApi.getById(4);
                 setCategory(data);
             } catch (error) {
                 console.log(error);

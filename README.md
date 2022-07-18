@@ -1,1 +1,0 @@
-# internship_22_HoiAn_smart_note

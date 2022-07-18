@@ -3,7 +3,7 @@ import { Category } from '../models/category';
 
 const categoryApi = {
     getById(id: number): Promise<Category[]> {
-        const url = `api/categories/${id}`;
+        const url = `/categories/${id}`;
         return axiosClient.get(url);
     },
 };

@@ -1,22 +1,22 @@
 import { Menu } from 'antd';
 import { useEffect, useState } from 'react';
-import categoryApi from '../../services/categoryApi';
 
-import { Category } from '../../models/category';
+import { Label } from '../../models/label';
 import styles from './Navigation.module.scss';
 import classNames from 'classnames/bind';
 
-import { FolderOpenOutlined } from '@ant-design/icons';
+import { TagsOutlined } from '@ant-design/icons';
+import labelApi from '../../services/labelApi';
 
 const cx = classNames.bind(styles);
 
-const Navigation = () => {
-    const [category, setCategory] = useState<Category[]>([]);
+const Categories = () => {
+    const [category, setCategory] = useState<Label[]>([]);
     useEffect(() => {
         // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
         (async () => {
             try {
-                const data = await categoryApi.getById(6);
+                const data = await labelApi.getById(6);
                 setCategory(data);
             } catch (error) {
                 console.log(error);
@@ -26,12 +26,12 @@ const Navigation = () => {
 
     return (
         <Menu mode="inline" style={{margin: '0 25px 0 25px', width: 'auto', background: '#328cff', borderRadius: '20px'}}>
-            <Menu.SubMenu title={<span>Category</span>} className={cx('menu')}>
+            <Menu.SubMenu title={<span>Label</span>} className={cx('menu')}>
                 {category.map((cate, index: number) => {
                     return (
                         <Menu.Item key={index}>
-                            <FolderOpenOutlined />
-                            <span>{cate.category_name}</span>
+                            <TagsOutlined />
+                            <span>{cate.label_name}</span>
                         </Menu.Item>
                     );
                 })}
@@ -40,4 +40,5 @@ const Navigation = () => {
     );
 };
 
-export default Navigation;
+export default Categories;
+

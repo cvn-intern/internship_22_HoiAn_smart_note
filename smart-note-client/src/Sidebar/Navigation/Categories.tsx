@@ -10,7 +10,7 @@ import { FolderOpenOutlined } from '@ant-design/icons';
 
 const cx = classNames.bind(styles);
 
-const Navigation = () => {
+const Categories = () => {
     const [category, setCategory] = useState<Category[]>([]);
     useEffect(() => {
         // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
@@ -40,4 +40,5 @@ const Navigation = () => {
     );
 };
 
-export default Navigation;
+export default Categories;
+

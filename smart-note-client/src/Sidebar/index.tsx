@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 const SideBar = () => {
     return (
         <div className={cx('wrapper')}>
-            <img src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/logo.png" alt="Avatar" style={{ width: '50px', height: '50px' }}></img>
+            <img src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/logo_test.png" alt="Avatar" className={cx('logo')} ></img>
             <Profile />
             <Search />
             <AddNew />

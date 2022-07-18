@@ -1,4 +1,4 @@
-.search_wrapper {
+.wrapper {
     display: flex;
     border: 2px solid #e8e8e8;
     border-radius: 20px;
@@ -11,7 +11,7 @@
 }
 
 .search_icon {
-    background-color: #328cff;
+    background-color: var(--primary);
     background-image: url(https://img.icons8.com/fluency-systems-filled/48/e8e8e8/search.png);
     background-position: 50%;
     background-repeat: no-repeat;

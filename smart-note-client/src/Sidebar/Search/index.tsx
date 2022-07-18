@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 const Search = () => {
     return (
-        <div className={cx('search_wrapper')}>
+        <div className={cx('wrapper')}>
             <div className={cx('search_icon')}></div>
             <input className={cx('search_input')} placeholder="Search" />
         </div>

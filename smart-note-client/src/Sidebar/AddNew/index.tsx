@@ -6,13 +6,13 @@ const cx = classNames.bind(styles);
 
 const AddNew = () => {
     return (
-        <div className={cx('add-wrapper')} onClick={() => alert('Show popup!')}>
-            <div className={cx('add-left')}>
-                <PlusOutlined className={cx('add-icon')} />
-                <span className={cx('add-title')}>Add New</span>
+        <div className={cx('wrapper')} onClick={() => alert('Show popup!')}>
+            <div className={cx('left-side')}>
+                <PlusOutlined className={cx('icon')} />
+                <span className={cx('title')}>Add New</span>
             </div>
-            <div className={cx('add-right')}>
-                <DownOutlined className={cx('add-icon')} />
+            <div className={cx('right-side')}>
+                <DownOutlined className={cx('icon')} />
             </div>
         </div>
     );

@@ -27,6 +27,8 @@ const Note = () => {
             lastModified: Date.now(),
         };
 
+        inputRef.current! && inputRef.current.focus();
+
         setNotes([newNote, ...notes]);
     };
 
@@ -47,7 +49,6 @@ const Note = () => {
     };
 
     const getActiveNote = () => {
-        inputRef.current! && inputRef.current!.focus();
         return notes.find((note: any) => note.id === activeNote);
     };
 

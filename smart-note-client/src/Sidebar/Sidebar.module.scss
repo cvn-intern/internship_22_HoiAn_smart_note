@@ -5,3 +5,11 @@
     display: flex;
     background-color: var(--primary);
 }
+
+// responsive for ipad
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1200px) {
+    .wrapper {
+        width: var(--col-9);
+    }
+}

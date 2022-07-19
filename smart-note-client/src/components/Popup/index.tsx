@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 export interface PopupProps {
     show?: boolean;
-    children: React.ReactNode;
+    children?: React.ReactNode;
     className?: string;
 }
 

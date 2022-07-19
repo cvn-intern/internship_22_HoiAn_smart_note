@@ -1,0 +1,24 @@
+.wrapper {
+    margin: 20px 25px 0 25px;
+    color: white;
+    width: auto;
+
+    .icon {
+        font-size: 18px;
+        &-small {
+            font-size: 14px;
+        }
+    }
+    .popup {
+        margin-top: 4px;
+        background-color: #559ef1;
+    }
+
+    .btn-add {
+        justify-content: flex-start;
+
+        & + .btn-add {
+            margin-top: 10px;
+        }
+    }
+}

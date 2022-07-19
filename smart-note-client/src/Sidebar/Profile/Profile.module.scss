@@ -1,0 +1,41 @@
+.profile {
+    display: flex;
+    margin-left: 20px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.username {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.email {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 8px;
+    display: flex;
+    align-items: center;
+    color: white;
+}

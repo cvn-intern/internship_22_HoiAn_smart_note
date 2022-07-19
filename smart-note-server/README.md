@@ -17,6 +17,6 @@ Fill in your connection configuration.
 ## Available Scripts
 - `composer update`
 - `php artisan key:generate`
-- `php artisan server` (init the developement server)
+- `php artisan serve` (init the developement server)
 - `php artisan migrate` (init the MySQL tables)
 - `php artisan db:seed --class=DatabaseSeeder` (init the seed data)

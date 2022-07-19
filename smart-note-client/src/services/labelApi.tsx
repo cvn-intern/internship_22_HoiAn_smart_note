@@ -6,6 +6,11 @@ const labelApi = {
         const url = `/labels/${id}`;
         return axiosClient.get(url);
     },
+    add(data: Label): Promise<Label> {
+        const url = `/labels`;
+        return axiosClient.post(url, data);
+    },
 };
+
 
 export default labelApi;

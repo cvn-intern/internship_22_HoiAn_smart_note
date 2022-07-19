@@ -1,5 +1,6 @@
 .wrapper {
     display: flex;
+    flex-wrap: nowrap;
     border: 2px solid #e8e8e8;
     border-radius: 20px;
     flex: 1 1;
@@ -35,7 +36,8 @@
     height: 70%;
     outline: none;
     margin: auto 6px;
-    padding: 0 15px;
+    padding-left: 15px;
+    width: 50%;
 }
 
 

@@ -10,8 +10,7 @@ import { useParams } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 const Note = () => {
-
-    const params= useParams();
+    const params = useParams();
 
     const [notes, setNotes] = useState(localStorage.notes ? JSON.parse(localStorage.notes) : []);
 
@@ -24,26 +23,24 @@ const Note = () => {
     // }, [notes]);
 
     useEffect(() => {
-        // Lưu ý phải cho () để hàm async chạy ngay để không lỗi
-        (async () => {
-            try {
-                const data = await noteApi.getById((params.category_id));
-                setNotes(data);
-            } catch (error) {
-                console.log(error);
-            }
-        })();
+        noteApi.getById(params.category_id).then((data) => {
+            setNotes(data);
+        });
     }, []);
 
-
-    const onAddNote = () => {
+    const onAddNote = async () => {
         const newNote = {
             id: uuidv4(),
-            title: 'Untitle note',
-            body: '',
+            note_title: 'Untitle note',
+            note_content: 'Uncontent note',
             lastModified: Date.now(),
         };
 
+        const newData = {
+            note_title: 'Untitle note',
+            note_content: 'Uncontent note',
+        };
+        await noteApi.addNote(newData, params.category_id);
         inputRef.current! && inputRef.current.focus();
 
         setNotes([newNote, ...notes]);

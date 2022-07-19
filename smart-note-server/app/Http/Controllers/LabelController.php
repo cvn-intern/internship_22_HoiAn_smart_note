@@ -3,19 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\Note;
+use App\Models\Label;
 use App\Util\StringValidation;
 use Exception;
 
-class CategoryController extends Controller
+class LabelController extends Controller
 {
-    public function readAllCategories()
+    public function readAllLabels()
     {
         try {
-            $categories = Category::all();
+            $labels = Label::all();
             return response()->json(
-                $categories
+                $labels
             , 200);
         }
         catch (Exception $exception) {
@@ -25,12 +24,12 @@ class CategoryController extends Controller
         }
     }
 
-    public function readUserRelatedCategories(string $user_id)
+    public function readUserRelatedLabels(string $user_id)
     {
         try {
-            $categories = Category::where('user_id', $user_id)->get();
+            $labels = Label::where('user_id', $user_id)->get();
             return response()->json(
-                $categories
+                $labels
             , 200);
         }
         catch (Exception $exception) {
@@ -40,30 +39,30 @@ class CategoryController extends Controller
         }
     }
 
-    public function createCategory(Request $request)
+    public function createLabel(Request $request)
     {
-        $category_name = StringValidation::deleteSpace($request->category_name);
+        $label_name = StringValidation::deleteSpace($request->label_name);
         $user_id = $request->user_id;
 
         $validated = $request->validate([
-            'category_name' => ['required', 'string', 'regex:/^[a-zA-Z0-9 _-]{1,30}$/'],
+            'label_name' => ['required', 'string', 'regex:/^[a-zA-Z0-9 _-]{1,30}$/'],
             'user_id' => ['required'],
         ]);
-
+        
         try {
-            $category = Category::where('category_name', $category_name)->where('user_id', $user_id)->first();
-            if ($category) {
+            $label = Label::where('label_name', $label_name)->where('user_id', $user_id)->first();
+            if ($label) {
                 return response()->json([
-                    'message' => 'Category already exists'
+                    'message' => 'Label already exists'
                 ], 400);
             }
 
-            $category = new Category();
-            $category->category_name = $category_name;
-            $category->user_id = $user_id;
-            $category->save();
+            $label = new Label();
+            $label->label_name = $label_name;
+            $label->user_id = $user_id;
+            $label->save();
             return response()->json(
-                $category
+                $label
             , 201);
         }
         catch (Exception $exception) {
